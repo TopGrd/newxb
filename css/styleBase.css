@@ -1,0 +1,49 @@
+@charset "utf-8";
+/* CSS Document */
+@import url(styleInitial.css);
+@import url(styleFormat.css);
+@import url(styleSpecial.css);
+body {
+	background:url(../images/backpic.jpg) repeat-x;
+	height:650px;
+	}
+#wrap {
+	top:7%;
+	text-align:center;
+	width:902px;
+	height:560px;
+	border:5px solid #99f;
+	margin:0 auto;
+	}
+#container {
+	width:900px;
+	height:555px;
+	border:1px #fff solid;
+	background:#fff;
+	}
+#header {
+	height:50px;
+	padding-top:20px;
+	margin-bottom:75px;
+	width:900px;
+	background:url(../images/img_01.jpg);
+	}
+.boxBig {
+	float:left;
+	width:200px;
+	margin-left:20px;
+	_display:inline;
+	}
+.boxBig img {
+	border:2px solid #ccc;
+	width:150px;
+	}
+#footer {
+	text-align:center;
+	top:8%;
+	}
+
+
+#xif {
+    margin-top: 40px;
+}

@@ -1,0 +1,8 @@
+@charset "utf-8";
+/* CSS Document */
+.filterOpacity {
+	filter: alpha(opacity=50);
+	-moz-opcity:0.5;
+	opacity: 0.5;
+	}
+

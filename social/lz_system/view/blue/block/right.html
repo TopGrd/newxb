@@ -1,0 +1,31 @@
+<div id="right">
+	<h3>全文检索</h3>
+        <form action="search.php" method="get" id="form_1" >
+            <input value=""  name="q" type="text" /><br />
+            <select name="tm">
+                  <option value="1">按标题</option>
+                  <option value="2">按作者</option>
+                  <option value="3">按关键词</option>
+             </select>
+            <input type="submit" value="开始搜索"  />
+        </form>
+    	<div id="r_header">
+		<h3>新闻动态</h3>
+        	<ul>
+            	<!-- BEGIN news -->
+            		<li><a href="index.php?p=newsitem&item_id={item_id}" title="{name}">{show_description_text:name,15}...</a></li>
+            	<!-- END -->
+                	<li class="link_s"><a href="index.php?p=category&category_id=2">more</a></li>
+            </ul> 
+        </div>
+        <div id="r_bottom">
+        	<ul>
+		<li class="link_a"><a href="http://cssci.nju.edu.cn/index.asp"><img src="images/logo_cssci.jpg" /></a></li>
+            	<li class="link_a"><a href="http://search.cnki.net/"><img src="images/logo_cnki.jpg" /></a></li>
+                <li class="link_a"><a href="http://g.wanfangdata.com.cn/default.aspx"><img src="images/logo_wanfang.jpg" /></a></li>
+                <li class="link_a"><a href="http://edu.cqvip.com/"><img src="images/logo_vip.jpg" /></a></li>
+                <li class="link_a"><a href="http://www.cass.net.cn/"><img src="images/logo_sscp.jpg" /></a></li>
+                <li class="link_a"><a href="http://www.meeting.edu.cn/"><img src="images/logo_zgxshyzx.jpg" /></a></li>
+            </ul>
+        </div>
+    </div>

@@ -1,0 +1,43 @@
+<div id="bottom">
+	<p>	
+    	<span class="copyright">copyright© 电子科技大学学报  2010  自然科学版编辑部  </span>
+        <a href="admin.php"><span class="name">  管理登陆</span></a>
+    </p>
+     <div id="leftsead">
+	<ul>
+		<li><a class="youhui"><img src="images/wechat.jpg" width="47" height="49" class="shows" /><img src="images/wechatma.jpg" width="200" height="200" class="hides1" usemap="#taklhtml"/><map name="taklhtml"><area shape="rect" coords="26,273,115,300 " href="" /></map></a></li>
+        <li><a class="youhui"><img src="images/weibo.jpg" width="47" height="49" class="shows" /><img src="images/weiboma.jpg" width="200" height="200" class="hides" usemap="#taklhtml"/><map name="taklhtml"><area shape="rect" coords="26,273,115,300 " href="" /></map></a></li>
+		<li><a id="top_btn"><img src="images/ll06.jpg" width="131" height="49" class="hides"/><img src="images/l06.png" width="47" height="49" class="shows" /></a></li>
+	</ul>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+	   $("#leftsead a").hover(function(){
+		if($(this).prop('className')=='youhui')
+            {
+                $(this).children("img.hides").show();
+                $(this).children("img.hides1").show();
+            }
+           else{
+			$(this).children("img.hides").show();
+            $(this).children("img.hides1").show();
+			$(this).children("img.shows").hide();
+			$(this).children("img.hides").animate({'marginRight':'0px'},'slow');
+            $(this).children("img.hides1").animate({'marginRight':'0px'},'slow'); 
+		  }
+	},function(){ 
+		if($(this).prop('className')=='youhui'){
+			$(this).children("img.hides").hide('slow');
+            $(this).children("img.hides1").hide('slow');
+		}else{
+			$(this).children("img.hides").animate({'marginRight':'-143px'},'slow',function(){$(this).hide();$(this).next("img.shows").show();});
+            $(this).children("img.hides1").animate({'marginRight':'-143px'},'slow',function(){$(this).hide();$(this).next("img.shows").show();});
+		}
+	});
+
+	$("#top_btn").click(function(){if(scroll=="off") return;$("html,body").animate({'scrollTop': 0}, 600);});
+
+});
+</script>
+</div>

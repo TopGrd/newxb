@@ -1,0 +1,1 @@
+<?php echo $_obj['html']; ?>

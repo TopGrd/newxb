@@ -1,0 +1,97 @@
+<div id="middle">
+		<div id="m_top">
+        </div>
+        <div id="m_middle">
+            <script type="text/javascript">
+            function showTab(tabID)
+            {
+                for(var i=0;i<4;i++){
+                    if(i == tabID){
+                        document.getElementById("tab"+i).style.display="block";
+                        document.getElementById("tb"+i).style.borderBottomColor="#fff";
+                    }
+                    else {
+                        document.getElementById("tab"+i).style.display="none";
+                        document.getElementById("tb"+i).style.borderBottomColor="#ccc";
+
+                    }
+                }
+            }
+            </script>
+        	<h1>{item.name}</h1>
+            <h2>作者：{item.author}</h2>
+            <h3><strong><span class="strong">关键词：</span>
+                    <?php
+                            foreach ($_obj['item_keywords'] as $value) {
+                                echo "<a href='search.php?q=".$value["keyword"]."&tm=3'>".$value["keyword"]."</a>,";
+                            }
+                    ?>
+            </strong></h3>
+            <a href="{item.file_name}">PDF下载</a>
+
+            <div id="itemTabsBox">
+                <ul>
+                    <li id="tb0" onclick="showTab(0)" style="border-bottom-color:#fff;">摘要</li>
+                    <li id="tb1" onclick="showTab(1)">参考文献</li>
+                    <li id="tb2" onclick="showTab(2)">相关文章</li>
+                    <li id="tb3" onclick="showTab(3)">相关作者文章</li>
+                </ul>
+                <div id="tab0" style="display:block;"><p>{item.description}</p></div>
+                 <div id="tab1" style="display:none;"><p><?php
+                  echo eregi_replace("\n","</br>",$_obj['item']['reference']);
+                ?></p></div>
+                <div id="tab2" style="display:none;"><ul>
+                <?php
+
+                    foreach ($_obj['article'] as $id => $name) {
+                        echo "<li>";
+                        echo "<a href='?p=item&item_id=".$id."'>".$name['name']."</a>";
+                        echo "</li>";
+                    }
+                    //var_dump($_obj['article']);
+                ?></ul>
+                </div>
+                <div id="tab3" style="display:none;">
+                    <?php
+                        echo "<br/>";
+                        foreach ($_obj['author_articles'] as $key => $value) {
+                            echo $key."<br/><ul>";
+                            foreach ($value as $aid => $name) {
+                                echo "<li>";
+                                echo "<a href='?p=item&item_id=".$aid."'>".$name[0]."</a>";
+                                echo "</li>";
+                            }
+                            echo "</ul><br/>";
+                        }
+                    ?>
+                </div>
+            </div>
+             <!-- IF item.status="0" -->
+			<?php if ($_GET['preview']):?>
+			<div style="margin:400px 10px; width:300px;">
+				<input class="pbtn" type="button" value="确认发布" onclick="window.location='admin.php?p=item&item_id={item.item_id}&m=status&status=1';" /> 	
+				<input class="pbtn" type="button" value="编辑" onclick="window.location='admin.php?p=item&item_id={item.item_id}&action=edit_item';" />  
+				<input class="pbtn" type="button" value="返回" onclick="history.go(-1)" /> 
+			</div>
+            <style>
+            .pbtn{
+                float: left;
+                width: 100px;
+            }
+            </style>
+			<?php endif;?>
+		<!-- ENDIF -->
+                <p style="margin-top:380px;">引用本文:</p>
+      <span>{item.name}.电子科技大学学报,{this_category.name}:{item.classnum}
+      </span>
+      <p>链接本文:</p>
+      <a id="url" href="" style="color:red;"></a>
+      <script>
+        var od=document.getElementById('url');
+        od.innerHTML=window.location.href;
+        od.href=window.location.href;
+      </script>
+        </div>
+        <div id="m_bottom">
+        </div>
+    </div>

@@ -1,0 +1,47 @@
+@charset "utf-8";
+/* CSS Document */
+.small {
+	font-size:13px;	
+	color:#000;
+	line-height:20px;
+	}
+.strong {
+	font-weight:bold;
+	color:#06F;
+	}
+.strongBig {
+	font-weight:bold;
+	font-size:xx-large;
+	}
+.linkN {
+	color:#666;	
+	}
+.linkN:hover {
+	color:#99f;
+	font-weight:bold;
+	text-decoration:none;
+	}
+.linkImg img {
+	border:2px solid #ccc;	
+	}
+.linkImg img:hover {
+	border:2px solid #99f;
+	}
+.underline {
+	text-decoration:underline;
+	}
+.paddingBig {
+	margin-left:32px;
+	}
+.paddingSmall {
+	margin-left:28px;
+	}
+.spaceP {
+	margin-top:15px;
+	padding:15px 0 10px 0;
+	border-top:2px solid #0CF;
+	height:40px;
+	}
+.spaceP:hover {
+	border-top:2px solid #03F;
+	}

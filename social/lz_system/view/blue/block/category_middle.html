@@ -1,0 +1,30 @@
+  <div id="middle">
+		<div id="m_top">
+        	<span class="center">{category.name}</span>
+        </div>
+        <div id="m_middle">
+        	<!-- IF category_tree -->
+				<!-- BEGIN category_tree -->
+						<h3><a href="?p=category&category_id={category_id}">{name}</a></h3>
+						<ul>
+							<!-- BEGIN items -->
+							  <li>
+								  <a href="?p=item&item_id={item_id}">{name}</a><b>{format_date:publish_time}</b>
+							  </li>
+							<!-- END -->
+						</ul>
+			   <!-- END -->
+		   <!-- ELSE -->
+              
+               <ul>
+			       <!-- BEGIN items -->
+							  <li>
+								  <a href="?p=newsitem&item_id={item_id}">{name}</a><b>{format_date:publish_time}</b>
+							  </li>
+				   <!-- END -->
+			  </ul>
+           
+           <!-- ENDIF -->
+         
+     </div>
+</div>

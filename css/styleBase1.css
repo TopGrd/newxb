@@ -1,0 +1,37 @@
+ul,
+li {
+    text-decoration: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.newsblock ul li a{
+    text-decoration: none;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+    color: #000;
+}
+.newsblock ul li a:hover{
+    color: red;
+}
+.newsblock {
+    height: 20px;
+}
+.newsblock ul li{
+    width: auto;
+    float: left;
+}
+body{
+    width: 98%;
+    height: 20px;
+	border: 2px solid #99ccff;
+	border-style: dotted;
+}
+.lefiLi a{
+	text-decoration:none;
+	color:#000;
+}
+.lefiLi a:hover{
+	color:red;
+}

@@ -1,0 +1,37 @@
+<div id="middle">
+	
+<?php
+$_arr = $db->get_all("SELECT * FROM `lz_category` WHERE parent_id=1 AND status=1 ORDER BY category_id DESC  LIMIT 1");
+foreach($_arr as $article)
+{
+        echo "<div id='m_top'>";
+        echo "<a href='index.php?p=category&category_id=1'>更多已发行往期</a>";
+        echo "</div>";
+
+        echo "<a href='index.php?p=category&category_id=$article[category_id]'><h1>---$article[name]---</h1></a>";
+        
+        $childid=$article[category_id];
+        
+    
+  $_arr = $db->get_all("SELECT * FROM `lz_category` WHERE parent_id=$childid AND status=1 ORDER BY category_id DESC");
+		
+         foreach($_arr as $art) {
+               echo "<h2><a href='index.php?p=category&category_id=$art[category_id]'>.$art[name].</a></h2>";
+               
+               $itemid=$art[category_id];
+   $_arr = $db->get_all("SELECT * FROM `lz_item` WHERE category_id=$itemid AND status=1 ORDER BY order_id DESC,publish_time DESC ");  
+                foreach($_arr as $at){
+                     
+
+                  echo "<ul>";
+                  
+                     echo " <li class='link_c'><a href='index.php?p=item&item_id=$at[item_id]'>$at[name]</a></li>";
+               
+               		 	
+                 echo  "</ul>";
+                 }
+      
+      }
+}
+?> 
+</div>

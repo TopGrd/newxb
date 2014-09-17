@@ -1,0 +1,126 @@
+<div id="middle">
+    <form name="" id="search" method="get" action="index.php">
+    <div class="sea"><img class="icon3" src="images/partner_search.png">
+        <span class="spans">文章快速检索</span>
+        <input id="search"  name ='name' type="text" value="">
+		<input type = 'hidden' name = 'p' value='advance_search'>
+		<input type = 'hidden' name = 'page_size'  value ='30'>
+		<input type = 'hidden' name = 'sort_mode'  value ='category'>
+        <a onclick="document.getElementById('search').submit()" class="button glow" style="margin-top:4px;margin-left:5px;width:0px;height:24px;float:left;"><span class="Go">Go</span></a>
+        <a href="index.php?p=advance_search" class="spans" style="margin-left:4px;">高级检索</a>
+    </div>
+    </form>
+<?php 
+    $prevId = $_obj['prev_cur_next']['prev'];
+    $nextId = empty($_obj['prev_cur_next']['next'])?$_obj['prev_cur_next']['cur']:$_obj['prev_cur_next']['next'];
+    $map = "SELECT * FROM `lz_category` WHERE parent_id=1 AND category_id=".$_obj['prev_cur_next']['cur']." AND status=1 ORDER BY category_id DESC  LIMIT 1";
+    $_arr = $db->get_all($map);
+    foreach($_arr as $article)
+    {
+?>
+    <div class="mainco">
+        <div class="bar">
+            <span class="Btitle">电子科技大学学报</span>
+        </div>
+        <img class="magazine" src="images/img-xb.jpg">
+        <div class="mainfo">
+            <p class="infot">《电子科技大学学报》</p>
+            <p class="infoau">主编：周涛</p>
+            <p class="infoau">主管：教育部</p>
+            <p class="infoau">主办：电子科技大学</p>
+            <p class="infoau">编辑出版：《电子科技大学学报》编辑部</p>
+            <p class="infoau">国内统一刊号：CN 51-1207/T</p>
+            <p class="infoau">国际标准刊号：ISSN 1001-0548</p>
+            <p class="infoau">邮发行号：62-34</p>
+        </div>
+        <div class="pre">
+            <a class="aas1" href="<?=__SELF__.'?cid='.$prevId?>"><img class="icon4" src="images/pre.png">上一期</a>
+            <a class="aas" href="<?=__SELF__.'?cid='.$nextId?>"><img class="icon4" src="images/aft.png">下一期</a>
+            <p class="infodate"><?=$article["name"]?></p>
+            <?php
+                $year = "";
+                preg_match("/\d*/",$article["name"],$year);
+                $year = $year[0];
+            ?>
+            <p class="infodate mkk">刊出日期：<?=$article["publish_time"]?></p>
+        </div>
+            <script type="text/javascript">
+                            $(document).ready(function(){
+                             var $abs = $('div.abstract'); 
+                                $abs.hide();
+                            $('a.more').click(function(){
+                                $(this).parent().parent().next('div').slideToggle('slow');
+                                var $link=$(this);
+                                if($link.text()=='[+摘要]' ){
+                                    $link.text('[─摘要]');
+                                }
+                                else{
+                                    $link.text('[+摘要]');
+                                }
+                                    
+                            });
+                               /* $('.data3').mouseover(function(){
+                                    $(this).css('background','#F5F6F3');
+                                });
+                                 $('.data3').mouseout(function(){
+                                    $(this).css('background','#fff');
+                                });*/
+                                var $data3a = $('.data3:even');
+                            $data3a.css('background','#EDEDED');
+                            }); 
+                            
+            </script>
+    <div class="catatab">
+            <ul class="tabb">
+                <li class="tab_active">&nbsp;&nbsp;&nbsp;&nbsp;目录</li>
+                <li class="tab_no"></li>
+            </ul>
+<?php
+    
+?>
+    
+<?php
+        $childid=$article[category_id];
+       // echo "<div id='m_to+p'>";
+        //    echo "<a href='index.php?p=category&category_id=1'>更多已发行往期</a>";
+        //echo "</div>";
+    
+        $_arr = $db->get_all("SELECT * FROM `lz_category` WHERE parent_id=$childid AND status=1 ORDER BY category_id DESC");
+        
+         foreach($_arr as $art) {
+?>
+
+        <div class="midcontent">
+                <div class="catagroy">
+                    <p class="catah1"><a class="catah1_a" href='index.php?p=category&category_id=<?=$art["category_id"]?>'><?=$art["name"]?></p>
+                </div>
+
+<?php    
+        $itemid=$art[category_id];
+        $_arr = $db->get_all("SELECT * FROM `lz_item` WHERE category_id=$itemid AND status=1 ORDER BY order_id DESC,publish_time DESC ");  
+        foreach($_arr as $at){
+?>
+         <ul class="data2">
+                    <li class="data3"><a class="catename" href='index.php?p=item&item_id=<?=$at[item_id]?>'><?=$at['name']?></a>
+                        <span class="author"><?=$at['author']?></span>
+                        <div class="voldata">
+                        <span class="Vol"><?=$at["periodsAndpage"]?></span>
+                        <span class="showabstract"><a class="more" href="javascript:void(0);">[+摘要]</a></span>
+                        <span class="data_sp"><a href='index.php?p=pdfdownload&file=<?=$at["file_name"]?>&item_id=<?=$at["item_id"]?>'><u>PDF</u></a>&nbsp;&nbsp;(<span  class="red">&nbsp;<?=$at["download_count"]?>&nbsp;</span>)</span>
+                        <span class="data_sp mag"><a href='index.php?p=viewhtml&item_id=<?=$at["item_id"]?>'>HTML</a>&nbsp;&nbsp;(<span  class="red">&nbsp;<?=$at["view_count"]?>&nbsp;</span>)</span>
+                        </div>
+                        
+                        <div class="abstract"><?=$at["description"]?></div>
+                    </li>
+        </ul>
+<?php
+                 }
+        echo "</div>";
+      
+            }
+        }
+?> 
+    </div>
+    </div>
+
+</div>

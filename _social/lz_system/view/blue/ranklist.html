@@ -1,0 +1,81 @@
+<?php
+	//var_dump($_obj['time_order']);$_obj['ranklist'];
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>电子科技大学学报·自然版</title>
+<link rel="icon" href="images/favicon.png" type="image/x-icon" />
+<link href="css/style_thrid.css" type="text/css" rel="stylesheet" />
+<link href="css/xb.css" type="text/css" rel="stylesheet" />
+<link  href="css/buttons.css" type="text/css" rel="stylesheet"/>
+<script src="js/jquery.js"></script>
+<script type="text/javascript" src="js/buttons.js"></script>
+<style>
+    #m_middle{
+    position:inherit;
+        }
+</style>
+</head>
+
+<body id="wrap">
+
+		<!-- INCLUDE banner.html -->
+        <div id="content">
+
+        <!-- INCLUDE repair.html -->
+   
+   
+        <!-- INCLUDE block/left.html -->
+   
+        <div id="middle">
+		<div id="m_top">
+		
+		<?php
+		if($_obj['ranklist_type'] == 'time'){
+        	echo '<h1 class="center">最新录用</h1>';
+		}elseif($_obj['ranklist_type'] == 'view'){
+			echo '<h1 class="center">摘要点击排行</h1>';
+		}elseif($_obj['ranklist_type'] == 'download'){
+			echo '<h1 class="center">全文下载排行</h1>';
+		}
+		?>
+		
+        </div>
+        
+        <div id="m_middle">
+            <hr>
+        <ol class="data2" start="1">
+        
+
+		
+        	<?php foreach ($_obj['ranklist'] as $value) { ?>
+                <li><a class="cc" href="<?='index.php?p=item&amp;item_id='.$value['item_id']?>"><?=$value['name']?></a>
+				<?php
+				if($_obj['ranklist_type'] == 'time'){
+					$data = date("Y-m-d H:i",$value['publish_time']);
+				}elseif($_obj['ranklist_type'] == 'view'){
+					$data = $value['view_count'];
+				}elseif($_obj['ranklist_type'] == 'download'){
+					$data = $value['download_count'];
+				}
+				?>
+
+                <span><?=$data?></span>
+
+                </li>
+          	<?php } ?>
+            </ol>
+         	
+        </div>
+</div>
+        </div>
+		
+		<!-- INCLUDE bottom.html -->
+
+</body>
+</html>
+
+
+
